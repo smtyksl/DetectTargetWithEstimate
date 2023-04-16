@@ -17,6 +17,8 @@ public abstract class KafkaClient {
 
     protected Point coordinate;
 
+    Random rand;
+
     public KafkaClient(String groupID, String topicName, String bootstrapServers) {
         this.topicName = topicName;
         Properties props = new Properties();
@@ -27,6 +29,7 @@ public abstract class KafkaClient {
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Collections.singletonList(topicName));
+        rand = new Random();
     }
 
     public void run() {
@@ -43,10 +46,13 @@ public abstract class KafkaClient {
     public abstract void close();
 
     public void PutPoint (){
-        Random rand = new Random(System.currentTimeMillis());
         coordinate = new Point();
-        coordinate.setX( rand.nextInt(1000)-1000);
-        coordinate.setY( rand.nextInt(1000)-1000);
+        int x = rand.nextInt(2001) - 1000;
+        int y = rand.nextInt(2001) - 1000;
+        System.out.println(" x : " +x);
+        System.out.println(" y : " +y);
+        coordinate.setX(x);
+        coordinate.setY(y);
     }
 
     public double distance(Point other) {

@@ -16,7 +16,7 @@ public class Sensor1 {
             a.PutPoint();
             //sensor1.send(a.getMessage());
             Thread.sleep(100);
-            a.getMessage();
+          //  a.getMessage();
 
         }
 
