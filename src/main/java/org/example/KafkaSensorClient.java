@@ -1,10 +1,14 @@
 package org.example;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.example.Kafka.*;
+import com.google.protobuf.util.JsonFormat;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 public class KafkaSensorClient extends KafkaClient {
@@ -33,6 +37,24 @@ public class KafkaSensorClient extends KafkaClient {
         consumer.close();
     }
 
+    public String getMessage() throws InvalidProtocolBufferException {
+        // Create a new Coordinate object
+        Coordinate coordinate = Coordinate.newBuilder()
+                .setX(42)
+                .setY(123)
+                .build();
 
+        // Create a new KafkaMessage object
+        KafkaMessage message = KafkaMessage.newBuilder()
+                .setClientType(ClientType.SENSOR1)
+                .setCoordinate(coordinate)
+                .build();
+
+        // Serialize the KafkaMessage to a string
+        String kafkaMessageString = JsonFormat.printer().print(message);
+
+        System.out.println(kafkaMessageString);
+        return kafkaMessageString;
+    }
 
 }

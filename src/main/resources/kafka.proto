@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package org.example;
+
+message KafkaMessage {
+    ClientType clientType = 1;
+    Coordinate coordinate = 2;
+}
+
+message Coordinate {
+    int32 x=1;
+    int32 y=2;
+}
+
+enum ClientType {
+      TARGET = 0;
+      SENSOR1 = 1;
+      SENSOR2 = 2;
+}
