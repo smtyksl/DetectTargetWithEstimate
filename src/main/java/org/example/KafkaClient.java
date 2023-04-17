@@ -49,8 +49,6 @@ public abstract class KafkaClient {
         coordinate = new Point();
         int x = rand.nextInt(2001) - 1000;
         int y = rand.nextInt(2001) - 1000;
-        System.out.println(" x : " +x);
-        System.out.println(" y : " +y);
         coordinate.setX(x);
         coordinate.setY(y);
     }

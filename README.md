@@ -23,3 +23,7 @@ openjdk 17.0.6 2023-01-17
 OpenJDK Runtime Environment (build 17.0.6+10-Ubuntu-0ubuntu122.04)
 
 OpenJDK 64-Bit Server VM (build 17.0.6+10-Ubuntu-0ubuntu122.04, mixed mode, sharing)
+
+# Protobuf Derlemek için
+
+protoc --proto_path=your-proto --java_out=build/gen src/foo.proto

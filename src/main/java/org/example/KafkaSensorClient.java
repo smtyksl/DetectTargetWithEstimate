@@ -24,7 +24,11 @@ public class KafkaSensorClient extends KafkaClient {
     }
 
     @Override
-    public void handleMessage(ConsumerRecord<String, String> record) {}
+    public void handleMessage(ConsumerRecord<String, String> record) {
+        System.out.printf("Received message key=%s, value=%s, partition=%d, offset=%d\n",
+                record.key(), record.value(), record.partition(), record.offset());
+        // Do something with the message here, for example write it to a file or store it in a database
+    }
 
     @Override
     public void send(String value) {
@@ -53,7 +57,6 @@ public class KafkaSensorClient extends KafkaClient {
         // Serialize the KafkaMessage to a string
         String kafkaMessageString = JsonFormat.printer().print(message);
 
-        System.out.println(kafkaMessageString);
         return kafkaMessageString;
     }
 
